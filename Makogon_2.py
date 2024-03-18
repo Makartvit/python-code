@@ -34,3 +34,5 @@ while i < n:
         result_w += str(i)
 
 print(result_w)
+
+print("result_w")
