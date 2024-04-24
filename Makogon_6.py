@@ -1,5 +1,7 @@
 class ChessFigure:
     def __init__(self, color_figure="white", place_figure=(0, 0)):
+        if not self.on_board(place_figure):
+            raise ValueError("Ошибка: не в области (0-7).")
         self.color_figure = color_figure
         self.place_figure = place_figure
 
@@ -15,7 +17,7 @@ class ChessFigure:
             self.color_figure = "white"
 
     def moving_chess(self, new_place):
-        """Перемещает фигуру в новое место."""
+        # Перемещает фигуру
         if self.on_board(new_place):
             self.place_figure = new_place
         else:
@@ -24,7 +26,7 @@ class ChessFigure:
 
 class Pawn(ChessFigure):
     def can_move(self, new_place):
-        """Проверка на перемещение пешки"""
+        """Проверка области."""
         if not self.on_board(new_place):
             return False
 
@@ -32,10 +34,19 @@ class Pawn(ChessFigure):
         col_diff = new_place[1] - self.place_figure[1]
 
         if self.color_figure == "white":
-
+            # Белые пешк движутся вниз.
             return row_diff == -1 and col_diff == 0
         else:
+            # Черные пешк движутся вверх.
             return row_diff == 1 and col_diff == 0
+
+    def move_pawn(self, new_place: tuple):
+        """Перемещает пешку в новое место"""
+        if self.can_move(new_place):
+            self.moving_chess(new_place)
+        else:
+            print("Ошибка")
+
 
 class Bishop(ChessFigure):
     def can_move(self, new_place):
@@ -50,24 +61,17 @@ class Bishop(ChessFigure):
             return True
 
 
+pawn = Pawn("white", (6, 0))
 
-pawn = Pawn("white", (2, 1))
+# Попытка переместить пешку на новое место
+pawn.move_pawn((5, 0))  # Ожидается перемещение
 
-new_position = (1, 1)
-if pawn.can_move(new_position):
-    pawn.moving_chess(new_position)
-else:
-    print("Ошибка")
-
+# Печать текущей позиции после перемещения
 print("Текущая позиция пешки:", pawn.place_figure)
 
-bishop = Bishop("white", (6, 6))
+bishop = Bishop("white", (5, 5))
 
-new_position = (7, 7)
-if bishop.can_move(new_position):
-    bishop.moving_chess(new_position)
-else:
-    print("Ошибка")
+bishop.moving_chess = (7, 7)
 
 bishop.change_color()
 
