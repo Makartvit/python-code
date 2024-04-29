@@ -157,24 +157,24 @@ class Knight(ChessFigure):
 
 class ChessSet:
     def __init__(self):
-        # Инициализируем фигур
-        self.figures = []
+        # Инициализируем список фигур
+        self.figures_list = []
 
-    def add_figure(self, figure):
-        # Добавляет фигуру в список
-        self.figures.append(figure)
+    def add_figure(self, chess_piece):
+        # Добавляем фигуру в список
+        self.figures_list.append(chess_piece)
 
     def get_figures(self):
-        # Возвращает список фигур
-        return self.figures
+        # Возвращаем список фигур
+        return self.figures_list
 
-    def find_movable_figures(self, target_position):
-        # Возвращает список фигур, которые могут переместиться
-        movable_figures = []
-        for figure in self.figures:
-            if figure.can_move(target_position):
-                movable_figures.append(figure)
-        return movable_figures
+    def find_movable_figures(self, target_pos):
+        # Возвращаем список фигур, которые могут переместиться
+        movable_pieces = []
+        for piece in self.figures_list:
+            if piece.can_move(target_pos):
+                movable_pieces.append(piece)  # Добавляем фигуры в этот список
+        return movable_pieces  # Возвращаем измененный список
 
 
 pawn = Pawn("white", (6, 0))
