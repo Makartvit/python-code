@@ -34,10 +34,10 @@ class Pawn(ChessFigure):
         col_diff = new_place[1] - self.place_figure[1]
 
         if self.color_figure == "white":
-            # Белые пешк движутся вниз.
+            # Белые пешка движутся вниз.
             return row_diff == -1 and col_diff == 0
         else:
-            # Черные пешк движутся вверх.
+            # Черные пешка движутся вверх.
             return row_diff == 1 and col_diff == 0
 
     def move_pawn(self, new_place):
@@ -206,12 +206,12 @@ print(f"Текущая позиция knight: {knight.place_figure}, Цвет kn
 chess_set = ChessSet()
 
 # Добавляем фигуры
-king = King("white", (0, 3))
-rook = Rook("white", (0, 0))
-bishop = Bishop("white", (0, 2))
-queen = Queen("white", (0, 2))
-knight = Knight("white", (0, 1))
-pawn = Pawn("white", (1, 1))
+king = King("white", (4, 7))
+rook = Rook("white", (3, 1))
+bishop = Bishop("white", (4, 4))
+queen = Queen("white", (2, 2))
+knight = Knight("white", (5, 5))
+pawn = Pawn("white", (6, 6))
 
 chess_set.add_figure(king)
 chess_set.add_figure(rook)
