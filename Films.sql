@@ -1,0 +1,46 @@
+-- CREATE TABLE actors (
+--     id SERIAL PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL
+-- );
+-- CREATE TABLE directors (
+--     id SERIAL PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL
+-- );
+-- CREATE TABLE films (
+--     id SERIAL PRIMARY KEY,
+--     title VARCHAR(255) NOT NULL,
+--     director_id INT,
+--     FOREIGN KEY (director_id) REFERENCES directors(id)
+-- );
+-- CREATE TABLE film_actor (
+--     film_id INT,
+--     actor_id INT,
+--     PRIMARY KEY (film_id, actor_id),
+--     FOREIGN KEY (film_id) REFERENCES films(id),
+--     FOREIGN KEY (actor_id) REFERENCES actors(id)
+-- );
+-- INSERT INTO actors (name) VALUES
+-- ('Леонардо Ді Капріо'),
+-- ('Наталі Портман'),
+-- ('Меріл Стріп');
+-- INSERT INTO directors (name) VALUES
+-- ('Стивен Спілберг'),
+-- ('Даррен Аронофский');
+-- INSERT INTO films (title, director_id) VALUES
+-- ('Парк Юрського періоду', 1),
+-- ('Чорний лебідь', 2),
+-- ('Титанік', 1);
+-- INSERT INTO film_actor (film_id, actor_id) VALUES
+-- (1, 1),
+-- (1, 2),
+-- (2, 2),
+-- (2, 3),
+-- (3, 1);
+-- SELECT table_name
+-- FROM information_schema.tables
+-- WHERE table_schema = 'public'
+-- AND table_type = 'BASE TABLE';
+SELECT f.title AS film_title, a.name AS actor_name
+FROM films f
+JOIN film_actor fa ON f.id = fa.film_id
+JOIN actors a ON fa.actor_id = a.id;
