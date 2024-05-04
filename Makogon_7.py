@@ -5,6 +5,7 @@ class Employee:
     year_now_1 = datetime.date.today().year
 
     def __init__(self, name, salary_one_working_day):
+        self.email = None
         self.name = name
         self.salary_one_working_day = salary_one_working_day
 
@@ -59,8 +60,8 @@ class Employee:
     def save_email(self):
         pass
 
-    def validate_email(self, email=None):
-        self.email = email
+    def validate_email(self, email):
+        pass
 
 
 class Recruiter(Employee):
