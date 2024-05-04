@@ -95,16 +95,16 @@ class Developer(Employee):
 
 
 # help(datetime.date.weekday)
-#
-# employee_1 = Employee("Jo", 1070)
-# employee_2 = Employee("Bob", 2500)
-#
-# print(employee_1 < employee_2)
-# print(employee_1 > employee_2)
-# print(employee_1 >= employee_2)
-#
-# developer_1 = Developer("Jo", 1556, ["Python", "SQL"])
-# developer_2 = Developer("Bob", 3456, ["Python"])
+
+employee_1 = Employee("Jo", 1070)
+employee_2 = Employee("Bob", 2500)
+
+print(employee_1 < employee_2)
+print(employee_1 > employee_2)
+print(employee_1 >= employee_2)
+
+developer_1 = Developer("Jo", 1556, ["Python", "SQL"])
+developer_2 = Developer("Bob", 3456, ["Python"])
 
 
 # print(developer_1 < developer_2)
