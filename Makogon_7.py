@@ -119,11 +119,11 @@ end_month = 5
 salary = employee_3.check_salary(end_day, end_month)
 print(f"Зарплата за рабочие дни с 1 по {end_day}.{end_month} в {Employee.year_now_1} году: {salary} грн")
 
-# dev_1 = Developer("Jo", 1350, ["Python", "JavaScript", "SQL"])
-# dev_2 = Developer("Bob", 2100, ["Python", "Java", "Ruby"])
-#
-# new_dev = dev_1 + dev_2
-#
-# print("New name:", new_dev.name)
-# print("Salary:", new_dev.salary_one_working_day)
-# print("Stack:", new_dev.tech_stack)
+dev_1 = Developer("Jo", 1350, ["Python", "JavaScript", "SQL"])
+dev_2 = Developer("Bob", 2100, ["Python", "Java", "Ruby"])
+
+new_dev = dev_1 + dev_2
+
+print("New name:", new_dev.name)
+print("Salary:", new_dev.salary_one_working_day)
+print("Stack:", new_dev.tech_stack)
