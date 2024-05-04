@@ -56,6 +56,12 @@ class Employee:
         # Расчет итоговой ЗП
         return self.salary_one_working_day * wrk_days
 
+    def save_email(self):
+        pass
+
+    def validate_email(self, email=None):
+        self.email = email
+
 
 class Recruiter(Employee):
 
@@ -105,7 +111,6 @@ print(employee_1 >= employee_2)
 
 developer_1 = Developer("Jo", 1556, ["Python", "SQL"])
 developer_2 = Developer("Bob", 3456, ["Python"])
-
 
 # print(developer_1 < developer_2)
 
