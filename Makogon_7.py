@@ -6,7 +6,6 @@ class Employee:
     year_now_1 = datetime.date.today().year
 
     def __init__(self, name, salary_one_working_day):
-        self.email = None
         self.name = name
         self.salary_one_working_day = salary_one_working_day
 
@@ -58,13 +57,6 @@ class Employee:
         # Расчет итоговой ЗП
         return self.salary_one_working_day * wrk_days
 
-    def save_email(self):
-
-        pass
-
-    def validate_email(self, email):
-        pass
-
 
 class Recruiter(Employee):
 
@@ -105,33 +97,81 @@ class Developer(Employee):
 
 # help(datetime.date.weekday)
 
-employee_1 = Employee("Jo", 1070)
-employee_2 = Employee("Bob", 2500)
+# employee_1 = Employee("Jo", 1070)
+# employee_2 = Employee("Bob", 2500)
+#
+# print(employee_1 < employee_2)
+# print(employee_1 > employee_2)
+# print(employee_1 >= employee_2)
+#
+# developer_1 = Developer("Jo", 1556, ["Python", "SQL"])
+# developer_2 = Developer("Bob", 3456, ["Python"])
+#
+# # print(developer_1 < developer_2)
+#
+#
+# employee_3 = Employee("Bob", 1)
+#
+# end_day = 6
+# end_month = 5
+#
+# #  расчет зарплаты с начала месяца до end_day
+# salary = employee_3.check_salary(end_day, end_month)
+# print(f"Зарплата за рабочие дни с 1 по {end_day}.{end_month} в {Employee.year_now_1} году: {salary} грн")
+#
+# dev_1 = Developer("Jo", 1350, ["Python", "JavaScript", "SQL"])
+# dev_2 = Developer("Bob", 2100, ["Python", "Java", "Ruby"])
+#
+# new_dev = dev_1 + dev_2
+#
+# print("New name:", new_dev.name)
+# print("Salary:", new_dev.salary_one_working_day)
+# print("Stack:", new_dev.tech_stack)
 
-print(employee_1 < employee_2)
-print(employee_1 > employee_2)
-print(employee_1 >= employee_2)
-
-developer_1 = Developer("Jo", 1556, ["Python", "SQL"])
-developer_2 = Developer("Bob", 3456, ["Python"])
-
-# print(developer_1 < developer_2)
+class EmailAlreadyExistsException(Exception):
+    pass
 
 
-employee_3 = Employee("Bob", 1)
 
-end_day = 6
-end_month = 5
+class Email:
+    def __init__(self, email):
+        self.email = email
+        self.save_email()
 
-#  расчет зарплаты с начала месяца до end_day
-salary = employee_3.check_salary(end_day, end_month)
-print(f"Зарплата за рабочие дни с 1 по {end_day}.{end_month} в {Employee.year_now_1} году: {salary} грн")
+    def save_email(self):
+        self.validate_email(self.email)
 
-dev_1 = Developer("Jo", 1350, ["Python", "JavaScript", "SQL"])
-dev_2 = Developer("Bob", 2100, ["Python", "Java", "Ruby"])
+        with open("emails.csv", 'a') as file:
+            csv_writer = csv.writer(file)
+            csv_writer.writerow([self.email])
 
-new_dev = dev_1 + dev_2
+    def validate_email(self, email):
 
-print("New name:", new_dev.name)
-print("Salary:", new_dev.salary_one_working_day)
-print("Stack:", new_dev.tech_stack)
+        try:
+            with open("emails.csv", 'r') as file:
+                csv_reader = csv.reader(file)
+                for row in csv_reader:
+                    if row and email == row[0]:
+                        raise EmailAlreadyExistsException(f"Email '{email}' уже существует.")
+        except FileNotFoundError:
+            print("Файл не найден, продолжение без данных.")
+
+
+emails = [
+    "yoixaprapappe-7598@yopmail.com",
+    "quicogiveitroi-4481@yopmail.com",
+    "thegagussage-1352@yopmail.com",
+    "nouneluzuro-6871@yopmail.com",
+    "crafadouttausso-8549@yopmail.com",
+    "crafadouttausso-8549@yopmail.com",
+    "thegagussage-13452@yopmail.com",
+    "crafadouttausso-849@yopmail.com",
+    "crafadouttausso-8333249@yopmail.com",
+]
+
+for email in emails:
+    try:
+        new_email = Email(email)
+        print(f"Email '{email}' добавлено.")
+    except EmailAlreadyExistsException as e:
+        print(f"Ошибка: {e}")
