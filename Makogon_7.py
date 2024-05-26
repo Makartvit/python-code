@@ -10,7 +10,7 @@ class Employee:
         self.salary_one_working_day = salary_one_working_day
 
     def work(self):
-        print("I come to the office")
+        return f"I come to the office"
 
     def __str__(self):
         return f"Position: {self.name}"
@@ -77,7 +77,7 @@ class Developer(Employee):
         return len(self.tech_stack) < len(other.tech_stack)
 
     def work(self):
-        print("I come to the office and start to hiring")
+        return f"I come to the office and start to hiring"
 
     def __str__(self):
         return f"Position: {self.name}"
@@ -130,7 +130,6 @@ class Developer(Employee):
 
 class EmailAlreadyExistsException(Exception):
     pass
-
 
 
 class Email:

@@ -160,9 +160,9 @@ class ChessSet:
         # Инициализируем список фигур
         self.figures_list = []
 
-    def add_figure(self, chess_piece):
+    def add_figure(self, chess):
         # Добавляем фигуру в список
-        self.figures_list.append(chess_piece)
+        self.figures_list.append(chess)
 
     def get_figures(self):
         # Возвращаем список фигур
@@ -171,9 +171,9 @@ class ChessSet:
     def find_movable_figures(self, target_pos):
         # Возвращаем список фигур, которые могут переместиться
         movable_pieces = []
-        for piece in self.figures_list:
-            if piece.can_move(target_pos):
-                movable_pieces.append(piece)  # Добавляем фигуры в этот список
+        for i in self.figures_list:
+            if i.can_move(target_pos):
+                movable_pieces.append(i)  # Добавляем фигуры в этот список
         return movable_pieces  # Возвращаем измененный список
 
 
